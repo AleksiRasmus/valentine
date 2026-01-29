@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine 💕</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #ffe6f0, #ffd1e8);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 40px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        button {
+            padding: 18px 40px;
+            margin: 10px;
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff4d88;
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 77, 136, 0.4);
+        }
+
+        #yesBtn:hover {
+            background-color: #ff3377;
+        }
+
+        #noBtn {
+            background-color: #cccccc;
+            color: #555;
+        }
+
+        /* 💖 Leijuvat sydämet */
+        .heart {
+            position: absolute;
+            bottom: -40px;
+            font-size: 22px;
+            animation: floatUp linear forwards;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will you be my valentine? 💖</h1>
+
+    <button id="yesBtn" onclick="yes()">Yes 💕</button>
+    <button id="noBtn" onclick="no()">No 💔</button>
+</div>
+
+<script>
+    let scale = 1;
+
+    function no() {
+        scale += 0.1;
+        document.getElementById("yesBtn").style.transform = `scale(${scale})`;
+    }
+
+    function yes() {
+        window.location.href = "success.html";
+    }
+
+    // 💕 Sydän-animaatio
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = Math.random() > 0.5 ? "💖" : "💕";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 26) + "px";
+        heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
